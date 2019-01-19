@@ -65,7 +65,8 @@
                         "watch": true,
                         "open": true,
                         "liveReload": true,
-                        "host": "dslms"
+                        "host": "dslms",
+                        "disableHostCheck": true
                     },
                     "configurations": {
                         "production": {

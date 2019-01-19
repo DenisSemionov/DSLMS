@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "ds-lms": "ds-lms",
+    "default": "ds-lms"
+  }
+}

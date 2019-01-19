@@ -1,0 +1,29 @@
+
+.container {
+    background-color: azure;
+
+    .background-container {
+        background-image: url('../../../assets/learning.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+
+        .motivation-text {
+            // font-family: 'Roboto';
+            font-size: 30px;
+            font-weight: 600;
+
+            margin-top: 20px;
+            max-width: 800px;
+            text-align: center;
+            color: primary;
+        }
+    }
+
+    .login-form-container {
+        form {
+            padding: 20px;
+            border: 2px solid cornflowerblue;
+            border-radius: 5%;
+        }
+    }
+}

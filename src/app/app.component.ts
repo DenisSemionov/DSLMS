@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'ds-lms';
-    private fgdfd = 5;
+    title = 'Denis Semionov Learning Management System';
 }
