@@ -14,10 +14,14 @@ import {
     MatButtonModule,
     MatToolbarModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NotificationService } from './services/notification-service';
+import { ContentManagementComponent } from './components/content-management/content-management.component';
+import { ContentPreviewComponent } from './components/content-preview/content-preview.component';
 
 @NgModule({
     imports: [
@@ -32,6 +36,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         MatIconModule,
         MatCardModule,
         MatMenuModule,
+        MatSnackBarModule,
         MatButtonModule,
         MatToolbarModule,
         MatProgressSpinnerModule,
@@ -40,8 +45,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     declarations: [
         AppComponent,
         LoginComponent,
+        ContentManagementComponent,
+        ContentPreviewComponent,
     ],
-    providers: [],
+    providers: [NotificationService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

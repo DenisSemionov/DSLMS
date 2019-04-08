@@ -1,3 +1,4 @@
+$primary-color: #3f51b5;
 
 .container {
     background-color: azure;
@@ -16,10 +17,18 @@
             max-width: 800px;
             text-align: center;
             color: primary;
+
+            .main-phrase {
+                color: $primary-color;
+            }
         }
     }
 
     .login-form-container {
+        .info-label {
+            color: $primary-color;
+        }
+
         form {
             padding: 20px;
             border: 2px solid cornflowerblue;
