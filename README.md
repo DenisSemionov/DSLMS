@@ -7,10 +7,12 @@ Client-side of simple learning management system. There is no server-side code a
 This project is deployed on `https://ds-lms.firebaseapp.com`, so you can navigate and see sample yourself.
 
 There is a possibility to login as:
-    1. Content Manager:
+    
+    1. Content Manager (can access all pages):
         Login: `ContentManager`
         Password: any
-    2. Learner
+    
+    2. Learner (can acces only one page: learning page)
         Login: `Learner`
         Password: any
 
