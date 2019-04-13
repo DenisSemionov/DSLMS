@@ -2,5 +2,6 @@ export enum RouteNames {
     Login = 'login',
     Content = 'content',
     Learning = 'learning',
-    Management = 'management'
+    Management = 'management',
+    About = 'about'
 };

@@ -22,6 +22,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NotificationService } from './services/notification-service';
 import { ContentManagementComponent } from './components/content-management/content-management.component';
 import { ContentPreviewComponent } from './components/content-preview/content-preview.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
     imports: [
@@ -47,6 +49,8 @@ import { ContentPreviewComponent } from './components/content-preview/content-pr
         LoginComponent,
         ContentManagementComponent,
         ContentPreviewComponent,
+        HeaderComponent,
+        AboutComponent,
     ],
     providers: [NotificationService],
     bootstrap: [AppComponent]

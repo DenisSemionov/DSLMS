@@ -5,6 +5,7 @@ import { ContentManagementComponent } from './components/content-management/cont
 import { ContentPreviewComponent } from './components/content-preview/content-preview.component';
 import { AuthGuard } from './guards/auth.guard';
 import { RouteNames } from './constants';
+import { AboutComponent } from './components/about/about.component';
 
 const secureRoutes: Routes = [
     {
@@ -28,11 +29,14 @@ const routes: Routes = [
         component: LoginComponent
     },
     {
+        path: RouteNames.About,
+        component: AboutComponent
+    },
+    {
         path: RouteNames.Content,
         pathMatch: 'prefix',
         children: secureRoutes,
         canActivateChild: [AuthGuard]
-
     }
 ];
 

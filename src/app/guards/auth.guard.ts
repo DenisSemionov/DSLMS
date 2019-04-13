@@ -17,8 +17,8 @@ export class AuthGuard implements CanActivate {
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         // Learner can access only preview component while content manager can access every page.
-        const accessAllowed = !((next.routeConfig.path === RouteNames.Learning && MainStorage.currentUser !== UserTypes.Learner)
-            || (MainStorage.currentUser !== UserTypes.ContentManager));
+        const accessAllowed = (next.routeConfig.path === RouteNames.Learning && MainStorage.currentUser === UserTypes.Learner)
+            || (MainStorage.currentUser === UserTypes.ContentManager);
 
         if (accessAllowed) {
             return true;

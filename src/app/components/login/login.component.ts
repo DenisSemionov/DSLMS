@@ -56,4 +56,8 @@ export class LoginComponent implements OnInit {
     public forgotPassword(): void {
         this.hasForgotPassword = true;
     }
+
+    public printStorage():void{
+        console.dir(MainStorage);
+    }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-content-preview',
+  selector: 'content-preview',
   templateUrl: './content-preview.component.html',
   styleUrls: ['./content-preview.component.scss']
 })

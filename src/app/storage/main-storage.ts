@@ -1,7 +1,9 @@
-import { UserTypes } from '../types';
+import { UserTypes, Task } from '../types';
 
 export abstract class MainStorage {
-    public static currentUser: UserTypes = null;
+    public static currentUser: UserTypes | null = null;
 
-    public static currentValue: string = "I am static storage value";
+    public static previousUrl: string | null = null;
+
+    public static allTasks: Array<Task> = [];
 }

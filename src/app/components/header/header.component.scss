@@ -1,0 +1,29 @@
+.header {
+    width: 100%;
+
+    &.dark {
+        background-color: #363636;
+        color: #29a0e6;
+    }
+
+    .logo {
+        max-height: 90%;
+
+        &:focus {
+            outline: none !important;
+        }
+    }
+
+    .navbar {
+        margin-right: 50px;
+
+        .nav-button {
+            color: #29a0e6;
+
+            .mat-icon {
+                font-size: 36px;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
