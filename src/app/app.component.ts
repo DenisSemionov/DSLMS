@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { MainStorage } from './storage/main-storage';
+import { UserTypes } from './types';
 
 @Component({
     selector: 'app-root',
@@ -7,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title = 'Denis Semionov Learning Management System';
+
+    //  Temp
+    constructor(private router: Router) {
+        MainStorage.currentUser = UserTypes.Learner;
+        this.router.navigate(['content/learning']);
+    }
 }

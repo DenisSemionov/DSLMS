@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
     ) { }
 
     public ngOnInit() {
+        // Reset active user
+        MainStorage.currentUser = null;
     }
 
     public login(): void {

@@ -16,7 +16,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "dist/ds-lms/index.html"
+        "destination": "/index.html"
       }
     ]
   }

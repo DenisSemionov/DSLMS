@@ -15,7 +15,8 @@ import {
     MatToolbarModule,
     MatMenuModule,
     MatCardModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -24,6 +25,7 @@ import { ContentManagementComponent } from './components/content-management/cont
 import { ContentPreviewComponent } from './components/content-preview/content-preview.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AboutComponent } from './components/about/about.component';
+import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
 
 @NgModule({
     imports: [
@@ -41,6 +43,7 @@ import { AboutComponent } from './components/about/about.component';
         MatSnackBarModule,
         MatButtonModule,
         MatToolbarModule,
+        MatDialogModule,
         MatProgressSpinnerModule,
         FlexLayoutModule
     ],
@@ -51,8 +54,10 @@ import { AboutComponent } from './components/about/about.component';
         ContentPreviewComponent,
         HeaderComponent,
         AboutComponent,
+        LogoutDialogComponent,
     ],
     providers: [NotificationService],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [LogoutDialogComponent]
 })
 export class AppModule { }

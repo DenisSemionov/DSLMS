@@ -17,10 +17,10 @@ export class AboutComponent implements OnInit {
 
     public navigateToPreviousPage(): void {
         if (MainStorage.previousUrl !== null) {
-            this._router.navigate([MainStorage.previousUrl])
+            this._router.navigate([MainStorage.previousUrl]);
+        } else {
+            this._router.navigate([RouteNames.Login]);
         }
-
-        this._router.navigate([RouteNames.Login]);
     }
 
 }
