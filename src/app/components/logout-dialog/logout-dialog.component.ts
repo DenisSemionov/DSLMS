@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { MainStorage } from 'src/app/storage/main-storage';
 import { Router } from '@angular/router';
-import { RouteNames } from 'src/app/constants';
+import { ROUTE_NAMES } from 'src/app/constants';
 
 @Component({
     selector: 'app-logout-dialog',
@@ -17,7 +17,7 @@ export class LogoutDialogComponent {
 
     public logout(): void {
         MainStorage.currentUser = null;
-        this._router.navigate([RouteNames.Login]);
+        this._router.navigate([ROUTE_NAMES.Login]);
 
         this._dialogRef.close();
     }

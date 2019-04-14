@@ -3,17 +3,24 @@ export enum UserTypes {
     Learner = 'Learner'
 }
 
-export type TaskAnswer = {
+export class ClassAnswerModel {
+    text: string;
     isCorrect: boolean;
-    text: string;
+
+    constructor(answer: ClassAnswerModel) {
+        this.text = answer.text;
+        this.isCorrect = answer.isCorrect;
+    }
 }
 
-export type TaskQuestion = {
-    text: string;
-}
-
-export type Task = {
+export class ClassModel {
     name: string;
-    questions: Array<TaskQuestion>;
-    answers: Array<TaskAnswer>;
+    question: string;
+    answers: Array<ClassAnswerModel>;
 }
+
+// export type ClassModel = {
+//     name: string;
+//     question: string;
+//     answers: Array<ClassAnswerModel>;
+// }

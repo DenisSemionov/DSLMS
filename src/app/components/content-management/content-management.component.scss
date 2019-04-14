@@ -1,0 +1,24 @@
+.class-form {
+    padding: 20px;
+    border: 1px skyblue solid;
+    border-radius: 10px;
+
+    .mat-form-field {
+        width: 70%;
+    }
+
+    .answers-container {
+        margin-top: 30px;
+    }
+
+    .form-actions {
+        margin-top: 30px;
+    }
+}
+
+.preview-toggle-button {
+    .mat-icon {
+        margin: 10px 15px;
+        font-size: 36px;
+    }
+}

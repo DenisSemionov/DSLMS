@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MainStorage } from './storage/main-storage';
 import { UserTypes } from './types';
+import { ROUTE_NAMES } from './constants';
 
 @Component({
     selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent {
 
     //  Temp
     constructor(private router: Router) {
-        MainStorage.currentUser = UserTypes.Learner;
-        this.router.navigate(['content/learning']);
+        MainStorage.currentUser = UserTypes.ContentManager;
+        this.router.navigate([ROUTE_NAMES.Content, ROUTE_NAMES.Management]);
     }
 }

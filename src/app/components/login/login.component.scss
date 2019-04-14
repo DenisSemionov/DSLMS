@@ -1,7 +1,7 @@
 $primary-color: #3f51b5;
 
-.container {
-    background-color: azure;
+.login-page-container {
+    background-color: #f0ffff;
 
     .background-container {
         background-image: url('../../../assets/learning.jpg');
@@ -16,7 +16,7 @@ $primary-color: #3f51b5;
             margin-top: 20px;
             max-width: 800px;
             text-align: center;
-            color: primary;
+            color: #000000;
 
             .main-phrase {
                 color: $primary-color;
@@ -33,7 +33,7 @@ $primary-color: #3f51b5;
 
         form {
             padding: 20px;
-            border: 2px solid cornflowerblue;
+            border: 2px solid #6495ed;
             border-radius: 5%;
         }
     }

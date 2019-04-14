@@ -4,16 +4,16 @@ import { LoginComponent } from './components/login/login.component';
 import { ContentManagementComponent } from './components/content-management/content-management.component';
 import { ContentPreviewComponent } from './components/content-preview/content-preview.component';
 import { AuthGuard } from './guards/auth.guard';
-import { RouteNames } from './constants';
+import { ROUTE_NAMES } from './constants';
 import { AboutComponent } from './components/about/about.component';
 
 const secureRoutes: Routes = [
     {
-        path: RouteNames.Management,
+        path: ROUTE_NAMES.Management,
         component: ContentManagementComponent
     },
     {
-        path: RouteNames.Learning,
+        path: ROUTE_NAMES.Learning,
         component: ContentPreviewComponent
     }
 ]
@@ -21,19 +21,19 @@ const secureRoutes: Routes = [
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/' + RouteNames.Login,
+        redirectTo: '/' + ROUTE_NAMES.Login,
         pathMatch: 'full'
     },
     {
-        path: RouteNames.Login,
+        path: ROUTE_NAMES.Login,
         component: LoginComponent
     },
     {
-        path: RouteNames.About,
+        path: ROUTE_NAMES.About,
         component: AboutComponent
     },
     {
-        path: RouteNames.Content,
+        path: ROUTE_NAMES.Content,
         pathMatch: 'prefix',
         children: secureRoutes,
         canActivateChild: [AuthGuard]

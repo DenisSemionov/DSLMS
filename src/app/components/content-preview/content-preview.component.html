@@ -1,5 +1,6 @@
-<a routerLink="/login">go back</a>
-<p>
-    content-preview works!
-</p>
+<div class="page-container">
+    <h2>Existing classes.</h2>
+    <div *ngFor="let class of getAllClasses()">{{class.name}}</div>
+</div>
 
+<!-- colorize answers for content manager and for learner when he finishes the test -->

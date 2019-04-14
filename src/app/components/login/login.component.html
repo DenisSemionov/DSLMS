@@ -1,4 +1,4 @@
-<div class="container" fxLayout="row" fxFlexFill>
+<div class="login-page-container" fxLayout="row" fxFlexFill>
     <!-- Background -->
     <div class="background-container" fxLayout.xs="hide" fxLayout="column" fxLayoutAlign="start center" fxFlex="60%">
         <div class="motivation-text">
@@ -15,7 +15,7 @@
             <mat-form-field appearance="outline">
                 <mat-label>Enter your username...</mat-label>
                 <input matInput placeholder="Username" formControlName="username" />
-                <mat-error class="warn" *ngIf="loginForm.controls.username.hasError('required') && loginForm.controls.username.touched">
+                <mat-error *ngIf="loginForm.controls.username.hasError('required') && loginForm.controls.username.touched">
                     Username is required.
                 </mat-error>
             </mat-form-field>
@@ -23,7 +23,7 @@
             <mat-form-field appearance="outline">
                 <mat-label>Enter your password...</mat-label>
                 <input matInput placeholder="Password" formControlName="password" type="password" />
-                <mat-error class="warn" *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
+                <mat-error *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
                     Password is required.
                 </mat-error>
             </mat-form-field>

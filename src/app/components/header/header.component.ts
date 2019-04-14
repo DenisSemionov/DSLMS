@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MainStorage } from 'src/app/storage/main-storage';
 import { Router } from '@angular/router';
-import { RouteNames } from 'src/app/constants';
+import { ROUTE_NAMES } from 'src/app/constants';
 import { UserTypes } from 'src/app/types';
 import { MatDialog } from '@angular/material';
 import { LogoutDialogComponent } from '../logout-dialog/logout-dialog.component';
@@ -31,7 +31,7 @@ export class HeaderComponent {
 
     public navigateToAboutPage(): void {
         MainStorage.previousUrl = this._router.url;
-        this._router.navigate([RouteNames.About]);
+        this._router.navigate([ROUTE_NAMES.About]);
     }
 
 }

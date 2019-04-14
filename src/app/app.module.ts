@@ -16,7 +16,8 @@ import {
     MatMenuModule,
     MatCardModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
 } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -36,6 +37,7 @@ import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.
         FormsModule,
         ReactiveFormsModule,
         MatFormFieldModule,
+        MatCheckboxModule,
         MatInputModule,
         MatIconModule,
         MatCardModule,

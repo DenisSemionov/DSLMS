@@ -3,7 +3,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 import { Observable } from 'rxjs';
 import { MainStorage } from '../storage/main-storage';
 import { UserTypes } from '../types';
-import { RouteNames } from '../constants';
+import { ROUTE_NAMES } from '../constants';
 import { NotificationService } from '../services/notification-service';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         // Learner can access only preview component while content manager can access every page.
-        const accessAllowed = (next.routeConfig.path === RouteNames.Learning && MainStorage.currentUser === UserTypes.Learner)
+        const accessAllowed = (next.routeConfig.path === ROUTE_NAMES.Learning && MainStorage.currentUser === UserTypes.Learner)
             || (MainStorage.currentUser === UserTypes.ContentManager);
 
         if (accessAllowed) {

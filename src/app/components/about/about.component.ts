@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MainStorage } from 'src/app/storage/main-storage';
-import { RouteNames } from 'src/app/constants';
+import { ROUTE_NAMES } from 'src/app/constants';
 
 @Component({
     selector: 'app-about',
@@ -19,7 +19,7 @@ export class AboutComponent implements OnInit {
         if (MainStorage.previousUrl !== null) {
             this._router.navigate([MainStorage.previousUrl]);
         } else {
-            this._router.navigate([RouteNames.Login]);
+            this._router.navigate([ROUTE_NAMES.Login]);
         }
     }
 
