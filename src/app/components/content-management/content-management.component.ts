@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators, FormArray, FormGroupDirective } fro
 import { trigger, transition, style, animate } from '@angular/animations';
 import { MainStorage } from 'src/app/storage/main-storage';
 import { ClassModel, ClassAnswerModel } from 'src/app/types';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'content-management',
@@ -30,13 +31,17 @@ export class ContentManagementComponent implements OnInit {
     public form: FormGroup;
     public isFormSubmitted = false;
     public showManagementTab = true;
+    public previewModel: ClassModel = null;
 
-    private answers: FormArray;
+    private _answers: FormArray;
+    private _subscriptions: Array<Subscription> = [];
 
     constructor() { }
 
     public ngOnInit() {
         this.initForms();
+
+        this.initSubscriptions();
 
         this.generateMandatoryFields();
     }
@@ -48,7 +53,7 @@ export class ContentManagementComponent implements OnInit {
             const classModel = new ClassModel();
             classModel.name = this.form.controls.name.value.trim();
             classModel.question = this.form.controls.question.value.trim();
-            classModel.answers = this.answers.value.map((o: ClassAnswerModel) => new ClassAnswerModel(o));
+            classModel.answers = this._answers.value.map((o: ClassAnswerModel) => new ClassAnswerModel(o));
 
             // Add new class to storage
             MainStorage.allClasses.push(classModel);
@@ -58,16 +63,18 @@ export class ContentManagementComponent implements OnInit {
 
     // Reset all form values
     public resetForm(): void {
+        this.previewModel = new ClassModel();
+
         this.form.controls.name.patchValue('');
         this.form.controls.question.patchValue('');
 
         // Leave 1 answer
-        for (let i = this.answers.length - 1; i > 0; i--) {
-            this.answers.removeAt(i);
+        for (let i = this._answers.length - 1; i > 0; i--) {
+            this._answers.removeAt(i);
         }
 
-        this.answers.controls[0].get('text').patchValue('');
-        this.answers.controls[0].get('isCorrect').patchValue(false);
+        this._answers.controls[0].get('text').patchValue('');
+        this._answers.controls[0].get('isCorrect').patchValue(false);
 
 
         this.formDirective.resetForm();
@@ -79,7 +86,7 @@ export class ContentManagementComponent implements OnInit {
     }
 
     public addAnswer(): void {
-        this.answers.push(
+        this._answers.push(
             new FormGroup({
                 text: new FormControl('', [Validators.required, Validators.maxLength(30)]),
                 isCorrect: new FormControl(false)
@@ -88,7 +95,7 @@ export class ContentManagementComponent implements OnInit {
     }
 
     public removeAnswer(index: number): void {
-        this.answers.removeAt(index);
+        this._answers.removeAt(index);
     }
 
     public togglePreviewWindowSize(): void {
@@ -102,7 +109,18 @@ export class ContentManagementComponent implements OnInit {
             answers: new FormArray([], [Validators.minLength(1)])
         });
 
-        this.answers = <FormArray>this.form.controls.answers;
+        this._answers = <FormArray>this.form.controls.answers;
+    }
+
+    private initSubscriptions(): void {
+        this._subscriptions.push(
+            this.form.valueChanges.subscribe(formValue => {
+                this.previewModel = new ClassModel();
+                this.previewModel.name = (formValue.name || '').trim();
+                this.previewModel.question = (formValue.question || '').trim();
+                this.previewModel.answers = formValue.answers.map(o => new ClassAnswerModel(o));
+            })
+        );
     }
 
     private generateMandatoryFields(): void {

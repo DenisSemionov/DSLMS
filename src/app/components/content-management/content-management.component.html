@@ -8,6 +8,9 @@
             <mat-error *ngIf="isFormSubmitted && form.controls.name.hasError('required')">
                 Class name is required.
             </mat-error>
+            <mat-error *ngIf="isFormSubmitted && form.controls.name.hasError('maxlength')">
+                Class name is too long.
+            </mat-error>
         </mat-form-field>
 
         <!-- Question -->
@@ -15,6 +18,9 @@
             <input matInput placeholder="Class question" formControlName="question" />
             <mat-error *ngIf="isFormSubmitted && form.controls.question.hasError('required')">
                 Class question is required.
+            </mat-error>
+            <mat-error *ngIf="isFormSubmitted && form.controls.question.hasError('maxlength')">
+                Class question is too long.
             </mat-error>
         </mat-form-field>
 
@@ -62,7 +68,7 @@
 </div>
 
 <!-- Content preview -->
-<content-preview fxFlex></content-preview>
+<content-preview [previewObject]="previewModel" fxFlex></content-preview>
 
 <a class="preview-toggle-button" [routerLink]="" (click)="togglePreviewWindowSize()">
     <mat-icon color="primary">view_compact</mat-icon>

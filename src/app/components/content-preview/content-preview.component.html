@@ -1,6 +1,52 @@
-<div class="page-container">
-    <h2>Existing classes.</h2>
-    <div *ngFor="let class of getAllClasses()">{{class.name}}</div>
+<div class="page-container" fxLayout="row | column" fxLayoutGap="70px">
+    <!-- Existing class list -->
+    <div class="class-list" fxLayout="column">
+        <h2>Existing classes</h2>
+        <!-- Class name -->
+        <div *ngFor="let class of getAllClasses(); let i = index"
+             class="class-name"
+             [ngClass]="{'selected-class': isClassSelected(class)}"
+             (click)="selectClass(i)">
+            <span>{{class.name}}</span>
+        </div>
+
+        <div *ngIf="previewClass && previewClass.name !== ''"
+             class="class-name"
+             [ngClass]="{'selected-class': isClassSelected(previewClass)}"
+             (click)="selectPreviewClass()"
+             fxLayout="row"
+             fxLayoutAlign="start center"
+             fxLayoutGap="10px">
+            <mat-icon color="primary">visibility</mat-icon>
+            <span>{{previewClass.name}}</span>
+        </div>
+    </div>
+
+    <!-- Selected class -->
+    <div *ngIf="selectedClass" class="selected-class-container" fxLayout="column" fxLayoutGap="10px">
+        <div>
+            <h2>{{selectedClass.name}}</h2>
+
+            <!-- Class question -->
+            <h3 class="class-question">{{selectedClass.question}}</h3>
+        </div>
+
+        <!-- Class answers -->
+        <div class="class-answer" *ngFor="let answer of selectedClass.answers; let i = index"
+             [ngClass]="{'selected-answer': isAnswerSelected(i)}"
+             fxLayout="row"
+             fxLayoutGap="10px"
+             fxLayoutAlign="start center"
+             (click)="selectAnswer(i)">
+            <span>{{ i + 1 }}. {{answer.text}}</span>
+            <div *ngIf="showAnswerIcon()" class="answer-icon">
+                <mat-icon *ngIf="answer.isCorrect" color="primary">done_all</mat-icon>
+                <mat-icon *ngIf="!answer.isCorrect" color="warn">clear</mat-icon>
+            </div>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="submitAnswers()">Submit</button>
+    </div>
 </div>
 
 <!-- colorize answers for content manager and for learner when he finishes the test -->

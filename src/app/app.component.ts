@@ -12,9 +12,10 @@ import { ROUTE_NAMES } from './constants';
 export class AppComponent {
     title = 'Denis Semionov Learning Management System';
 
-    //  Temp
-    constructor(private router: Router) {
+    constructor(private readonly _router: Router) {
+        // Uncomment for automatic authorization on page load
+
         MainStorage.currentUser = UserTypes.ContentManager;
-        this.router.navigate([ROUTE_NAMES.Content, ROUTE_NAMES.Management]);
+        this._router.navigate([ROUTE_NAMES.Content, ROUTE_NAMES.Management]);
     }
 }

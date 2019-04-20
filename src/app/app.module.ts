@@ -27,6 +27,7 @@ import { ContentPreviewComponent } from './components/content-preview/content-pr
 import { HeaderComponent } from './components/header/header.component';
 import { AboutComponent } from './components/about/about.component';
 import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.component';
+import { FeedbackDialogComponent } from './components/feedback-dialog/feedback-dialog.component';
 
 @NgModule({
     imports: [
@@ -57,9 +58,10 @@ import { LogoutDialogComponent } from './components/logout-dialog/logout-dialog.
         HeaderComponent,
         AboutComponent,
         LogoutDialogComponent,
+        FeedbackDialogComponent,
     ],
     providers: [NotificationService],
     bootstrap: [AppComponent],
-    entryComponents: [LogoutDialogComponent]
+    entryComponents: [LogoutDialogComponent, FeedbackDialogComponent]
 })
 export class AppModule { }

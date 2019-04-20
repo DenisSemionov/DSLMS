@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Class completion feedback.</h1>
+
+<mat-dialog-content>
+    <div>
+        You have answered {{correctAnswerAmount}} answers correctly and {{incorrectAnswerAmount}} incorrectly.
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button *ngIf="incorrectAnswerAmount === 0; else showSadButton" mat-raised-button color="primary" mat-dialog-close>Nice!</button>
+
+    <ng-template #showSadButton>
+        <button mat-raised-button mat-dialog-close color="warn">Oh, snap...</button>
+    </ng-template>
+</mat-dialog-actions>

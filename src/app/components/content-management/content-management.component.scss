@@ -1,6 +1,6 @@
 .class-form {
     padding: 20px;
-    border: 1px skyblue solid;
+    border: 1px #87ceeb solid;
     border-radius: 10px;
 
     .mat-form-field {
@@ -17,8 +17,9 @@
 }
 
 .preview-toggle-button {
+    margin: 15px 35px;
+
     .mat-icon {
-        margin: 10px 15px;
         font-size: 36px;
     }
 }

@@ -1,0 +1,50 @@
+.class-list {
+    .class-name {
+        box-sizing: content-box !important;
+        padding: 10px;
+        margin: 10px 0;
+        width: 250px !important;
+        max-width: 250px;
+        font-size: 17px;
+
+        border: 1px #87ceeb solid;
+        border-radius: 5px;
+
+        span {
+            width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        &.selected-class {
+            background-color: rgba(41, 160, 230, 0.8);
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.selected-class-container {
+    .class-question {
+        margin-bottom: 15px;
+    }
+
+    .class-answer {
+        border-radius: 5px;
+
+        &.selected-answer {
+            background-color: rgba(41, 160, 230, 0.7);
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .mat-raised-button {
+        width: 150px;
+        margin-top: 20px;
+    }
+}
