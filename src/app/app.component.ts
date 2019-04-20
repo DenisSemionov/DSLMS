@@ -15,7 +15,7 @@ export class AppComponent {
     constructor(private readonly _router: Router) {
         // Uncomment for automatic authorization on page load
 
-        MainStorage.currentUser = UserTypes.ContentManager;
-        this._router.navigate([ROUTE_NAMES.Content, ROUTE_NAMES.Management]);
+        // MainStorage.currentUser = UserTypes.ContentManager;
+        // this._router.navigate([ROUTE_NAMES.Content, ROUTE_NAMES.Management]);
     }
 }
