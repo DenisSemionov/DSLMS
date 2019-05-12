@@ -5,6 +5,7 @@ import { MainStorage } from 'src/app/storage/main-storage';
 import { ClassModel, ClassAnswerModel } from 'src/app/types';
 import { Subscription } from 'rxjs';
 import { ContentPreviewComponent } from '../content-preview/content-preview.component';
+import { NotificationService } from 'src/app/services/notification-service';
 
 @Component({
     selector: 'content-management',
@@ -39,7 +40,7 @@ export class ContentManagementComponent implements OnInit {
     private _answers: FormArray;
     private _subscriptions: Array<Subscription> = [];
 
-    constructor() { }
+    constructor(private readonly _notificationService: NotificationService) { }
 
     public ngOnInit() {
         this.initForms();
@@ -56,16 +57,20 @@ export class ContentManagementComponent implements OnInit {
             return;
         }
 
-        const classModel = new ClassModel();
-        classModel.name = this.form.controls.name.value.trim();
-        classModel.question = this.form.controls.question.value.trim();
-        classModel.answers = this._answers.value.map((o: ClassAnswerModel) => new ClassAnswerModel(o));
+        const classModel = new ClassModel({
+            name: this.form.controls.name.value.trim(),
+            question: this.form.controls.question.value.trim(),
+            answers: this._answers.value.map((o: ClassAnswerModel) => new ClassAnswerModel(o))
+        });
 
         // Add new class to storage
         MainStorage.allClasses.push(classModel);
 
         // Select newly created class for preview
         this.preview.selectClass(MainStorage.allClasses.length - 1);
+
+        // Show notification message
+        this._notificationService.success('Successfully created a new class.');
 
         this.resetForm();
     }

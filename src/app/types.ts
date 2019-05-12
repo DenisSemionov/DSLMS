@@ -17,4 +17,12 @@ export class ClassModel {
     name: string;
     question: string;
     answers: Array<ClassAnswerModel>;
+
+    constructor(value: ClassModel = null) {
+        if (value !== null) {
+            this.name = value.name;
+            this.question = value.question;
+            this.answers = value.answers;
+        }
+    }
 }

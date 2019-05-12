@@ -1,7 +1,12 @@
 <div *ngIf="showManagementTab" [@enterAnimation] class="page-container" fxFlex="50%">
     <h2>Create a new class</h2>
 
-    <form class="class-form" [formGroup]="form" #formDirective="ngForm" fxLayout="column" fxLayoutGap="20px">
+    <form #formDirective="ngForm"
+          class="class-form"
+          (ngSubmit)="createClass()"
+          [formGroup]="form"
+          fxLayout="column"
+          fxLayoutGap="20px">
         <!-- Class name -->
         <mat-form-field>
             <input matInput placeholder="Class name" formControlName="name" />
