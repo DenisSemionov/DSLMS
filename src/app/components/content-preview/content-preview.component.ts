@@ -10,26 +10,22 @@ import { FeedbackDialogComponent } from '../feedback-dialog/feedback-dialog.comp
     styleUrls: ['./content-preview.component.scss']
 })
 export class ContentPreviewComponent implements OnInit {
-    @Input('previewObject')
-    set previewObject(value: ClassModel) {
-        this.previewClass = value;
+    @Input('previewClass')
+    set previewClass(value: ClassModel) {
+        this._previewClass = value;
 
-        if (this.selectedClass && value) {
-            if (this.isPreviewClassSelected) {
-                this.selectPreviewClass();
-            }
+        if (this.selectedClass && value && this.isPreviewClassSelected) {
+            this.selectPreviewClass();
         }
-
     }
 
-    public previewClass: ClassModel = null;
+    public _previewClass: ClassModel = null;
     public selectedClass: ClassModel = null;
     public selectedAnswers: Array<number> = [];
 
     private isPreviewClassSelected: boolean = false;
 
     constructor(private readonly _dialogService: MatDialog) {
-
     }
 
     public ngOnInit() {
@@ -91,10 +87,9 @@ export class ContentPreviewComponent implements OnInit {
     }
 
     public isClassSelected(classModel: ClassModel): boolean {
-        if (this.selectedClass) {
-            return classModel.name === this.selectedClass.name;
-        }
-        return false;
+        return this.selectedClass
+            ? classModel.name === this.selectedClass.name
+            : false;
     }
 
     public selectClass(index: number): void {
@@ -110,7 +105,7 @@ export class ContentPreviewComponent implements OnInit {
 
         this.isPreviewClassSelected = true;
 
-        this.selectedClass = this.previewClass;
+        this.selectedClass = this._previewClass;
     }
 
     private clearPreviouslySelectedAnswers(): void {

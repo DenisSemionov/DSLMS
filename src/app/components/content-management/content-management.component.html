@@ -68,7 +68,7 @@
 </div>
 
 <!-- Content preview -->
-<content-preview [previewObject]="previewModel" fxFlex></content-preview>
+<content-preview #preview [previewClass]="previewClass" fxFlex></content-preview>
 
 <a class="preview-toggle-button" [routerLink]="" (click)="togglePreviewWindowSize()">
     <mat-icon color="primary">view_compact</mat-icon>

@@ -10,15 +10,15 @@
             <span>{{class.name}}</span>
         </div>
 
-        <div *ngIf="previewClass && previewClass.name !== ''"
+        <div *ngIf="_previewClass && _previewClass.name !== ''"
              class="class-name"
-             [ngClass]="{'selected-class': isClassSelected(previewClass)}"
+             [ngClass]="{'selected-class': isClassSelected(_previewClass)}"
              (click)="selectPreviewClass()"
              fxLayout="row"
              fxLayoutAlign="start center"
              fxLayoutGap="10px">
             <mat-icon color="primary">visibility</mat-icon>
-            <span>{{previewClass.name}}</span>
+            <span>{{_previewClass.name}}</span>
         </div>
     </div>
 
@@ -32,20 +32,22 @@
         </div>
 
         <!-- Class answers -->
-        <div class="class-answer" *ngFor="let answer of selectedClass.answers; let i = index"
-             [ngClass]="{'selected-answer': isAnswerSelected(i)}"
-             fxLayout="row"
-             fxLayoutGap="10px"
-             fxLayoutAlign="start center"
-             (click)="selectAnswer(i)">
-            <span>{{ i + 1 }}. {{answer.text}}</span>
-            <div *ngIf="showAnswerIcon()" class="answer-icon">
-                <mat-icon *ngIf="answer.isCorrect" color="primary">done_all</mat-icon>
-                <mat-icon *ngIf="!answer.isCorrect" color="warn">clear</mat-icon>
+        <ng-container *ngIf="selectedClass.answers.length > 0 && selectedClass.answers[0].text !== ''">
+            <div class="class-answer" *ngFor="let answer of selectedClass.answers; let i = index"
+                 [ngClass]="{'selected-answer': isAnswerSelected(i)}"
+                 fxLayout="row"
+                 fxLayoutGap="10px"
+                 fxLayoutAlign="start center"
+                 (click)="selectAnswer(i)">
+                <span>{{ i + 1 }}. {{answer.text}}</span>
+                <div *ngIf="showAnswerIcon()" class="answer-icon">
+                    <mat-icon *ngIf="answer.isCorrect" color="primary">done_all</mat-icon>
+                    <mat-icon *ngIf="!answer.isCorrect" color="warn">clear</mat-icon>
+                </div>
             </div>
-        </div>
 
-        <button mat-raised-button color="primary" (click)="submitAnswers()">Submit</button>
+            <button mat-raised-button color="primary" (click)="submitAnswers()">Submit</button>
+        </ng-container>
     </div>
 </div>
 

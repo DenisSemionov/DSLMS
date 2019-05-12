@@ -18,9 +18,3 @@ export class ClassModel {
     question: string;
     answers: Array<ClassAnswerModel>;
 }
-
-// export type ClassModel = {
-//     name: string;
-//     question: string;
-//     answers: Array<ClassAnswerModel>;
-// }

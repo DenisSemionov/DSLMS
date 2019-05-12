@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
     templateUrl: './feedback-dialog.component.html',
     styleUrls: ['./feedback-dialog.component.scss']
 })
-export class FeedbackDialogComponent implements OnInit {
+export class FeedbackDialogComponent {
 
     public correctAnswerAmount = 0;
     public incorrectAnswerAmount = 0;
@@ -17,8 +17,4 @@ export class FeedbackDialogComponent implements OnInit {
             this.incorrectAnswerAmount = data.incorrectAnswerAmount;
         }
     }
-
-    ngOnInit() {
-    }
-
 }

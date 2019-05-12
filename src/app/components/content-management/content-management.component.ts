@@ -4,6 +4,7 @@ import { trigger, transition, style, animate } from '@angular/animations';
 import { MainStorage } from 'src/app/storage/main-storage';
 import { ClassModel, ClassAnswerModel } from 'src/app/types';
 import { Subscription } from 'rxjs';
+import { ContentPreviewComponent } from '../content-preview/content-preview.component';
 
 @Component({
     selector: 'content-management',
@@ -27,11 +28,13 @@ import { Subscription } from 'rxjs';
 export class ContentManagementComponent implements OnInit {
     @ViewChild('formDirective', { read: FormGroupDirective }) private formDirective: FormGroupDirective;
 
+    @ViewChild('preview') private preview: ContentPreviewComponent;
+
     // Form for new task creation
     public form: FormGroup;
     public isFormSubmitted = false;
     public showManagementTab = true;
-    public previewModel: ClassModel = null;
+    public previewClass: ClassModel = null;
 
     private _answers: FormArray;
     private _subscriptions: Array<Subscription> = [];
@@ -49,22 +52,26 @@ export class ContentManagementComponent implements OnInit {
     public createClass(): void {
         this.isFormSubmitted = true;
 
-        if (this.form.valid) {
-            const classModel = new ClassModel();
-            classModel.name = this.form.controls.name.value.trim();
-            classModel.question = this.form.controls.question.value.trim();
-            classModel.answers = this._answers.value.map((o: ClassAnswerModel) => new ClassAnswerModel(o));
-
-            // Add new class to storage
-            MainStorage.allClasses.push(classModel);
-            this.resetForm();
+        if (this.form.invalid) {
+            return;
         }
+
+        const classModel = new ClassModel();
+        classModel.name = this.form.controls.name.value.trim();
+        classModel.question = this.form.controls.question.value.trim();
+        classModel.answers = this._answers.value.map((o: ClassAnswerModel) => new ClassAnswerModel(o));
+
+        // Add new class to storage
+        MainStorage.allClasses.push(classModel);
+
+        // Select newly created class for preview
+        this.preview.selectClass(MainStorage.allClasses.length - 1);
+
+        this.resetForm();
     }
 
     // Reset all form values
     public resetForm(): void {
-        this.previewModel = new ClassModel();
-
         this.form.controls.name.patchValue('');
         this.form.controls.question.patchValue('');
 
@@ -104,8 +111,8 @@ export class ContentManagementComponent implements OnInit {
 
     private initForms(): void {
         this.form = new FormGroup({
-            name: new FormControl('', [Validators.required, Validators.maxLength(20)]),
-            question: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+            name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+            question: new FormControl('', [Validators.required, Validators.maxLength(50)]),
             answers: new FormArray([], [Validators.minLength(1)])
         });
 
@@ -115,10 +122,12 @@ export class ContentManagementComponent implements OnInit {
     private initSubscriptions(): void {
         this._subscriptions.push(
             this.form.valueChanges.subscribe(formValue => {
-                this.previewModel = new ClassModel();
-                this.previewModel.name = (formValue.name || '').trim();
-                this.previewModel.question = (formValue.question || '').trim();
-                this.previewModel.answers = formValue.answers.map(o => new ClassAnswerModel(o));
+                if (this.previewClass === null) {
+                    this.previewClass = new ClassModel();
+                }
+                this.previewClass.name = (formValue.name || '').trim();
+                this.previewClass.question = (formValue.question || '').trim();
+                this.previewClass.answers = formValue.answers.map(o => new ClassAnswerModel(o));
             })
         );
     }
