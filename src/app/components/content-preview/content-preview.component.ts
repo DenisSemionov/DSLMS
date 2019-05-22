@@ -87,9 +87,9 @@ export class ContentPreviewComponent implements OnInit {
         }
     }
 
-    public isClassSelected(classModel: ClassModel): boolean {
+    public isClassSelected(index: number): boolean {
         return this.selectedClass && !this.isPreviewClassSelected
-            ? classModel.name === this.selectedClass.name
+            ? this.getClass(index).name === this.selectedClass.name
             : false;
     }
 
@@ -111,5 +111,9 @@ export class ContentPreviewComponent implements OnInit {
 
     private clearPreviouslySelectedAnswers(): void {
         this.selectedAnswers = [];
+    }
+
+    private getClass(index: number): ClassModel {
+        return ApplicationStateManager.getClass(index);
     }
 }

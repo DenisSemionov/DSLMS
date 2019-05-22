@@ -5,7 +5,7 @@
         <!-- Class name -->
         <div *ngFor="let class of getAllClasses(); let i = index"
              class="class-name"
-             [ngClass]="{'selected-class': isClassSelected(index)}"
+             [ngClass]="{'selected-class': isClassSelected(i)}"
              (click)="selectClass(i)">
             <span>{{class.name}}</span>
         </div>
