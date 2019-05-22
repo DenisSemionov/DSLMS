@@ -4,7 +4,7 @@ Client-side of simple learning management system. There is no server-side code a
 =======
 ## Sample
 
-This project is deployed on `https://ds-lms.firebaseapp.com/login`, so you can navigate and see sample yourself.
+This project is deployed on `https://ds-lms.firebaseapp.com`, so you can navigate and see sample yourself.
 
 There is a possibility to login as:
     

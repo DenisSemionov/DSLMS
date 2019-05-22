@@ -1,6 +1,11 @@
-export enum UserTypes {
+export enum UserRoles {
     ContentManager = 'ContentManager',
     Learner = 'Learner'
+}
+
+export enum Themes {
+    Light = 'Light',
+    Dark = 'Dark'
 }
 
 export class ClassAnswerModel {

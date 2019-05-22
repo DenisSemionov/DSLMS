@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ClassModel, ClassAnswerModel, UserTypes } from 'src/app/types';
-import { MainStorage } from 'src/app/storage/main-storage';
+import { ClassModel, ClassAnswerModel, UserRoles } from 'src/app/types';
+import { MainStore } from 'src/app/state/store/main-store';
 import { MatDialog } from '@angular/material';
 import { FeedbackDialogComponent } from '../feedback-dialog/feedback-dialog.component';
+import { ApplicationStateManager } from 'src/app/state/managers/application-state-manager';
 
 @Component({
     selector: 'content-preview',
@@ -23,7 +24,7 @@ export class ContentPreviewComponent implements OnInit {
     public selectedClass: ClassModel = null;
     public selectedAnswers: Array<number> = [];
 
-    private isPreviewClassSelected: boolean = false;
+    public isPreviewClassSelected: boolean = false;
 
     constructor(private readonly _dialogService: MatDialog) {
     }
@@ -32,11 +33,11 @@ export class ContentPreviewComponent implements OnInit {
     }
 
     public getAllClasses(): Array<ClassModel> {
-        return MainStorage.allClasses;
+        return ApplicationStateManager.getAllClasses();
     }
 
     public showAnswerIcon(): boolean {
-        return MainStorage.currentUser === UserTypes.ContentManager;
+        return ApplicationStateManager.getCurrentUserRole() === UserRoles.ContentManager;
     }
 
     public isAnswerCorrect(answer: ClassAnswerModel): boolean {
@@ -87,7 +88,7 @@ export class ContentPreviewComponent implements OnInit {
     }
 
     public isClassSelected(classModel: ClassModel): boolean {
-        return this.selectedClass
+        return this.selectedClass && !this.isPreviewClassSelected
             ? classModel.name === this.selectedClass.name
             : false;
     }

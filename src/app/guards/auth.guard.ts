@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MainStorage } from '../storage/main-storage';
-import { UserTypes } from '../types';
+import { MainStore } from '../state/store/main-store';
+import { UserRoles } from '../types';
 import { ROUTE_NAMES } from '../constants';
 import { NotificationService } from '../services/notification-service';
+import { ApplicationStateManager } from '../state/managers/application-state-manager';
 
 @Injectable({
     providedIn: 'root'
@@ -16,9 +17,11 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+        const currentUserRole = ApplicationStateManager.getCurrentUserRole();
+
         // Learner can access only preview component while content manager can access every page.
-        const accessAllowed = (next.routeConfig.path === ROUTE_NAMES.Learning && MainStorage.currentUser === UserTypes.Learner)
-            || (MainStorage.currentUser === UserTypes.ContentManager);
+        const accessAllowed = currentUserRole === UserRoles.ContentManager
+            || (next.routeConfig.path === ROUTE_NAMES.Learning && currentUserRole === UserRoles.Learner);
 
         if (accessAllowed) {
             return true;

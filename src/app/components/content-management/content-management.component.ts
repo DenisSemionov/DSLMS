@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray, FormGroupDirective } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { MainStorage } from 'src/app/storage/main-storage';
+import { MainStore } from 'src/app/state/store/main-store';
 import { ClassModel, ClassAnswerModel } from 'src/app/types';
 import { Subscription } from 'rxjs';
 import { ContentPreviewComponent } from '../content-preview/content-preview.component';
 import { NotificationService } from 'src/app/services/notification-service';
+import { ApplicationStateManager } from 'src/app/state/managers/application-state-manager';
 
 @Component({
     selector: 'content-management',
@@ -64,10 +65,10 @@ export class ContentManagementComponent implements OnInit {
         });
 
         // Add new class to storage
-        MainStorage.allClasses.push(classModel);
+        ApplicationStateManager.createClass(classModel);
 
         // Select newly created class for preview
-        this.preview.selectClass(MainStorage.allClasses.length - 1);
+        this.preview.selectClass(ApplicationStateManager.getClassesAmount() - 1);
 
         // Show notification message
         this._notificationService.success('Successfully created a new class.');

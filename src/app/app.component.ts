@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { MainStorage } from './storage/main-storage';
-import { UserTypes } from './types';
+import { MainStore } from './state/store/main-store';
+import { UserRoles } from './types';
 import { ROUTE_NAMES } from './constants';
 
 @Component({

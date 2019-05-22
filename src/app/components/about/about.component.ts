@@ -1,26 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MainStorage } from 'src/app/storage/main-storage';
-import { ROUTE_NAMES } from 'src/app/constants';
+import { ApplicationStateManager } from 'src/app/state/managers/application-state-manager';
 
 @Component({
     selector: 'app-about',
     templateUrl: './about.component.html',
     styleUrls: ['./about.component.scss']
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent {
 
     constructor(private readonly _router: Router) { }
 
-    ngOnInit() {
-    }
-
     public navigateToPreviousPage(): void {
-        if (MainStorage.previousUrl !== null) {
-            this._router.navigate([MainStorage.previousUrl]);
-        } else {
-            this._router.navigate([ROUTE_NAMES.Login]);
-        }
+        this._router.navigate([ApplicationStateManager.getPreviousPageUrl()]);
     }
-
 }

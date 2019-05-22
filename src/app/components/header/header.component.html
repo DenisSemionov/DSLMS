@@ -1,10 +1,18 @@
-<mat-toolbar class="header dark" color="primary">
+<mat-toolbar class="header" [ngClass]="{'dark': isDarkTheme()}" color="primary">
     <mat-toolbar-row style="max-height: 100%" fxLayoutAlign="space-between center">
         <!-- Icon -->
         <img class="logo" focused="false" src="./assets/ds.png">
 
         <!-- Nav buttons -->
         <div class="navbar" fxLayoutGap="40px" fxLayoutAlign="end center" fxFlex>
+            <!-- Change theme -->
+            <div fxLayoutGap="10px">
+                <span>
+                    Dark theme
+                </span>
+                <mat-checkbox (click)="toggleTheme(); $event.preventDefault()" [ngModel]="isDarkTheme()"></mat-checkbox>
+            </div>
+
             <!-- Do not show logout button when user is not logged -->
             <a *ngIf="getCurrentUser() !== null" class="nav-button" [routerLink]="" (click)="logout()">
                 <mat-icon>account_circle</mat-icon>

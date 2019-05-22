@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MainStorage } from 'src/app/storage/main-storage';
+import { MainStore } from 'src/app/state/store/main-store';
 import { NotificationService } from 'src/app/services/notification-service';
-import { UserTypes } from 'src/app/types';
+import { UserRoles } from 'src/app/types';
 import { Router } from '@angular/router';
+import { ApplicationStateManager } from 'src/app/state/managers/application-state-manager';
 
 @Component({
     selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
 
     public ngOnInit() {
         // Reset active user
-        MainStorage.currentUser = null;
+        ApplicationStateManager.resetCurrentUser();
     }
 
     public login(): void {
@@ -35,14 +36,14 @@ export class LoginComponent implements OnInit {
         }
 
         switch ((this.loginForm.controls.username.value || '').trim()) {
-            case UserTypes.ContentManager: {
-                MainStorage.currentUser = UserTypes.ContentManager;
+            case UserRoles.ContentManager: {
+                ApplicationStateManager.setCurrentUserRole(UserRoles.ContentManager);
                 this._router.navigate(['content/management']);
                 break;
             }
 
-            case UserTypes.Learner: {
-                MainStorage.currentUser = UserTypes.Learner
+            case UserRoles.Learner: {
+                ApplicationStateManager.setCurrentUserRole(UserRoles.Learner);
                 this._router.navigate(['content/learning']);
                 break;
             }

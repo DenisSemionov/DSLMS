@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { MainStorage } from 'src/app/storage/main-storage';
+import { MainStore } from 'src/app/state/store/main-store';
 import { Router } from '@angular/router';
 import { ROUTE_NAMES } from 'src/app/constants';
-import { UserTypes } from 'src/app/types';
+import { UserRoles, Themes } from 'src/app/types';
 import { MatDialog } from '@angular/material';
 import { LogoutDialogComponent } from '../logout-dialog/logout-dialog.component';
+import { ApplicationStateManager } from 'src/app/state/managers/application-state-manager';
 
 @Component({
     selector: 'app-header',
@@ -13,12 +14,22 @@ import { LogoutDialogComponent } from '../logout-dialog/logout-dialog.component'
 })
 export class HeaderComponent {
 
-    constructor(
+    private currentTheme = Themes.Dark;
+
+    public constructor(
         private readonly _router: Router,
         private readonly _dialogService: MatDialog) { }
 
-    public getCurrentUser(): UserTypes | null {
-        return MainStorage.currentUser;
+    public getCurrentUser(): UserRoles | null {
+        return ApplicationStateManager.getCurrentUserRole();
+    }
+
+    public toggleTheme(): void {
+        ApplicationStateManager.toggleTheme();
+    }
+
+    public isDarkTheme(): boolean {
+        return ApplicationStateManager.isDarkTheme();
     }
 
     public logout(): void {
@@ -30,7 +41,7 @@ export class HeaderComponent {
     }
 
     public navigateToAboutPage(): void {
-        MainStorage.previousUrl = this._router.url;
+        ApplicationStateManager.setPreviousUrl(this._router.url);
         this._router.navigate([ROUTE_NAMES.About]);
     }
 
